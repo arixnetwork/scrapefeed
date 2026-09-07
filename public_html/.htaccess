@@ -1,0 +1,14 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# Block direct access to anything under /includes if it were ever
+# copied inside public_html by mistake.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^includes/ - [F,L]
+</IfModule>
